@@ -128,6 +128,75 @@ The ng serve --prod command will be used to optimize the build.
    - Syntax 
        - [(ngModel)]="<PROPERTY-FROM-COMPONENT>"       
 
+#=================================================================
+#Angular Directives
+1. Objects that provides Custom UI and Functionality Behavior in Angular Application
+2. Three Types of Directives
+   1. Component Directive
+   2. Structural Directives
+      1. Used to dynamically add and remove HTML DOM
+         1. *ngIf
+         2. *ngFor
+         3. *ngSwitch--ngSwitchCase
+   3. Attribute Directives
+      1. ngModel
+      2. ngClass
+#=================================================================
+# Angular Forms
+1. Reactive Forms
+   1. The ReactiveFormsModule, contains Object Model for Forms
+   2. A Single Form Object that has a Form State.
+   3. The State is managed using FormGroup class
+      1. FormGroup Contains the Custom-Property-Directive as [formGroup], this represents the State of whole form
+   4. The state of individual element is represented by using FormControls class.
+      1. One FormGroup have multiple FormControls
+      2. Each FormContol is bind with Propety of Model object e.g. Student Model Object
+      3. The Model object from FormControl is bind with Editable UI element using [formControlName] custom-property-directive
+      4. Very Important: If using [formControlName] for Data binding, then do not use ngModel
+2. In Reactive Forms
+   1. <form> tag is by default maped with ngForm
+   2. the onSubmit is maped with (ngSubmit)
+   3. formGroup.value, property is the state of all FormControls in the Forms
+3. Template-Driven form aka utility forms e.g. LoginForm
+   1. To read the value from each form element we use # identifier
+      1. e.g. <input type="text" #studentid>
+         1. studentid.value, provide value of Input element
+4. Validations
+   1. HTML 5 validations aka traditional validations
+      1. Validation Rules are applied using DOM Attributes
+         1. required
+         2. pattern
+         3. minlength
+         4. maxlength
+   2. Model Validations in Reactive Forms, new in Angular
+      1. Validations rules are applied using Validators object from @angular/forms
+      2. Validators class contains static methods for validations
+         1. required(AbstractControl)
+            1. AbstractControl represents the DOM element to be validated
+         2. requiredTrue(AbstractControl)
+            1. Value must be true
+         3. minLength(length as number)  and maxLength(length as number)
+         4. min() / max()
+         5. pattern(RegEx)
+         6. compose([An Array of Validation rules])
+   3. To display validation rules on UI use following
+      1. <FormGroup>.controls.<FormControlName>.dirty
+         1. The UI element is changed
+      2. !<FormGroup>.controls.<FormControlName>.valid
+         1. The UI element failed validation rules aftre it is changed (dirty)
+      3. <FormGroup>.controls.<FormControlName>.<validation-rule>
+      4. To evaluate the validation rule for errors
+         1. <FormGroup>.controls.<FormControlName>.errors.<validation-rule> 
+
+#=================================================================================================================================================
+# Angular Parent Child Communication aka Inter-Component Communication
+
+1. Child Component must declare public read/write property decorated with @Input decorator
+2. This will make sure that the property can be used for property-binding
+3. In child component write logic to process received data using @Input 
+4. The child component can notify back to parent using EventListener object. This has an 'emit()' method to emit an event. 
+5. EventEmitter<T> is generic class. Here T is known as payload aka event data. The EventEmitter event type must be decorated by @Output. The EventEmitter event can be used as EventBinding in the selector of Child Component.
+6. When child emit an event, the parent must subscribe to it using Event-Binding. The payload is received using standard $event object.
 
 
 

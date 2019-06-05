@@ -220,7 +220,24 @@ The ng serve --prod command will be used to optimize the build.
       3. The sender component must be injected with this service and must call the public method and pass the payload value
       4. The receiver component must be injected with this service and must 'subscribe' to the event from the service in ngOnInit() method. 
       5. When the event is emitted, over the subscription the receiver component will receive the value
-4. 
+#=============================================================================
+# Angular Http Services
+1. @angular/common/http
+2. HttpClientModule
+   1. Class that provides an instance of HttpClient class
+3. HttpClient
+   1. Used to make Http calls to REST APIs
+      1. get<T>() / post<T>() / put<T> /  delete<T>
+         1. All these methods returns Observable<T>
+            1. Observable class availabel from Rxjs
+4. HttpHeaders  
+   1. Class that is used to define header options e.g. Content-Type / AUTHORIZATION, any other header value
+
+#=============================================================================
+# Angular FeatureModules (SharedModules as well as Lazy-Load Modules)
+1. For SharedModule
+   1. This never imports 'BrowserModule', instead import 'CommonModule'
+   2. This exports Services/Components/Directives/Pipes etc. like library or reusable module
 
 
 

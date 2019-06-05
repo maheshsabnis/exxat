@@ -198,9 +198,31 @@ The ng serve --prod command will be used to optimize the build.
 5. EventEmitter<T> is generic class. Here T is known as payload aka event data. The EventEmitter event type must be decorated by @Output. The EventEmitter event can be used as EventBinding in the selector of Child Component.
 6. When child emit an event, the parent must subscribe to it using Event-Binding. The payload is received using standard $event object.
 
+#=============================================================================================
+
+# Angular Services
+1. class decorated with @Injectable() decorator from @angular/core
+2. It has 'providedInd' property with following values
+   1. Type
+      1. It will be provided only for specific
+         1. component
+         2. or other objects in current module
+   2. 'root' (Recommended)
+      1. It will be registered globally for the application and will be available for all objects (Components/Services/Directives/Pipes) in current application
+   3. null (Default)
+      1. Explicitely registered in 'providers:[]' array on ngModule
+3. Additional Uses of having Services
+   1. Managing External Http / Socket calls from Angular Application
+   2. To Communicate across components based on Puiblish and Subscribe Mechanism    
+      1. Service must define an EventEmitter object with payload
+         1. Payload will be the values that will be shared across components
+      2. Service must define public method having input parameter of the type payload. This method must emite the event and broadcast (or publish) payload value.
+      3. The sender component must be injected with this service and must call the public method and pass the payload value
+      4. The receiver component must be injected with this service and must 'subscribe' to the event from the service in ngOnInit() method. 
+      5. When the event is emitted, over the subscription the receiver component will receive the value
+4. 
 
 
- 
 
 
 
